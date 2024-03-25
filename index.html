@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Application</title>
+    <link rel="icon" href="assets/clipboard.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script defer  src="bootstrap.js"></script>
+</head>
+<body>
+  <img src="assets/clipboard.png" class="mt-lg-4 ms-4" width="50" alt="">
+    <div class="container col-lg-6 col-md-8 col-11 mx-auto mt-lg-5 mt-4 p-lg-5 p-3 shadow-lg rounded-4 z-2">
+        <h1 class="text-center text-decoration-underline text-black fw-2 fs-1">Schedule Table</h1>
+        <p class="alert alert-danger text-center p-2 animate__animated animate__shakeX animate__infinite" id="err">Please fill in the empty box</p>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="Todo" autofocus>
+          <label for="floatingInput">Add your Task</label>
+        </div>
+        <button class="btn btn-sm my-3 w-100 btn-dark" onclick="submitBtn()">submit</button>
+    </div>
+    <div class=" col-lg-8 col-md-8 col-11 mt-lg-5 mt-3 p-lg-5 p-3  container shadow-sm" id="noItem">
+      <p class="alert alert-secondary text-center p-2" id="errnoItem">No item Add yet</p>
+    </div>
+
+    <div class=" col-lg-8 col-md-8 col-11 mt-lg-5 mt-3 p-lg-5 p-3 show container shadow-sm">
+    <div id="show"></div>
+  </div>
+  <!-- Modal edit  -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="newTodo" autofocus>
+            <label for="floatingInput"  for="newTodo">Edit your Task</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="editItem()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
