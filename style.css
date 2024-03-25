@@ -17,11 +17,18 @@ background-size: cover;
  flex-wrap: wrap;
  gap: 1.5rem;
 }
+.card{
+    width: 12rem;
+    justify-content: center;
+}
 
 @media screen and (max-width:470px) {
     #show{
         align-items: center;
         justify-content: center;
         gap: 1rem;
+       }
+       .card{
+        width: 100%;
        }
 }

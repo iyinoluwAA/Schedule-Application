@@ -24,7 +24,7 @@
     todoLIst.map(
         (items,number)=>{
         show.innerHTML += `
-        <div class="card" style="width: 10rem;">
+        <div class="card" ">
        <div class="card-body">
        <h5 class="card-title"> ${number + 1}</h5>
        <p class="card-text">${items} </p>
