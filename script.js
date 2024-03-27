@@ -18,7 +18,6 @@
 
         err.style.display = 'none'
       errnoItem.style.display = 'none'
-      noItem.style.display = 'none'
      todoLIst.push(todoContainer)
       console.log(todoLIst);
       document.getElementById("Todo").value =''
