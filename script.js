@@ -1,6 +1,8 @@
-   var  todoLIst = []
+   let  todoLIst = []
    var newNumber = 0
-
+   if(localStorage.users){
+    todoLIst = JSON.parse(localStorage.getItem("users"))
+}
 
 
    function submitBtn() {
@@ -21,54 +23,35 @@
       console.log(todoLIst);
       document.getElementById("Todo").value =''
       document.getElementById("TodoTwo").value = ''
+      localStorage.setItem("users", JSON.stringify(todoLIst))
+      window.location.href="result.html"
+      
     }
-    displayITem()
+    // displayITem()
    }
-   function displayITem(){
-    newTodo.value = Todo.value
-    newTodoTwo.value = TodoTwo.value
-    show.innerHTML = '';  
+//    function displayITem(){
+//     newTodo.value = Todo.value
+//     newTodoTwo.value = TodoTwo.value
+//     show.innerHTML = '';  
     
-    todoLIst.map(
-        (todoContainer,number)=>{
-          var time = new Date().toLocaleTimeString()
-          var date = new Date().toLocaleDateString()
+//     todoLIst.map(
+//         (todoContainer,number)=>{
+//           var time = new Date().toLocaleTimeString()
+//           var date = new Date().toLocaleDateString()
   
-        show.innerHTML += `
-        <div class="card" ">
-       <div class="card-body">
-       <h5 class="card-title"> ${number + 1}</h5>
-       <p class="card-text">${todoContainer.inputTag} </p>
-       <p class="card-text">${todoContainer.inputTagTwo}<br> ${date} ${time}</p>
-       <a href="#" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square" onclick="edit(${number})"></i></a>
-       <a href="#" class="btn btn-danger"  onclick="delTodo(${number})"><i class="fa-solid fa-trash"></i></a>
-       </div>
-      </div>
-        `
-        }
-    )
-   }
+//         show.innerHTML += `
+//         <div class="card bg-secondary text-white " ">
+//        <div class="card-body">
+//        <h5 class="card-title"> ${number + 1}</h5>
+//        <p class="card-text border-bottom border-dark">${todoContainer.inputTag} </p>
+//        <p class="card-text border-bottom border-dark">${todoContainer.inputTagTwo}<br></p>
+//        <p class="card-text border-bottom border-dark "> ${date} ${time}</p>
+//        <a href="#" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square" onclick="edit(${number})"></i></a>
+//        <a href="#" class="btn btn-danger"  onclick="delTodo(${number})"><i class="fa-solid fa-trash"></i></a>
+//        </div>
+//       </div>
+//         `
+//         }
+//     )
+//    }
 
-   function delTodo(i){
-    var confirmation = confirm("Are you sure you what to delete this item? if so click OK")
-    if (confirmation == true){
-      todoLIst.splice(i,1)
-      displayITem()
-    }
-   }
-
-   function edit(i) {
-      newNumber = i
-   }
-   function editItem() {
-    if ((newTodo.value && newTodoTwo.value) == "") {
-        alert("No way")
-    } else {
-       var modalAll = {
-        inputTag: document.getElementById("newTodo").value,
-        inputTagTwo: document.getElementById("newTodoTwo").value
-       }
-        todoLIst.splice(newNumber, 1 , modalAll)
-       displayITem()
-    }
-}

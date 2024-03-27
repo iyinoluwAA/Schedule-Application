@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Schedule Application</title>
+</head>
+<body>
+
+<div class=" col-lg-8 col-md-8 col-11 mt-lg-5 mt-3 p-lg-5 p-3 show container shadow-sm">
+    <div id="show"></div>
+  </div>
+   <!-- Modal edit  -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="newTodo" autofocus>
+            <label for="floatingInput"  for="newTodo">Edit your Task</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="newTodoTwo" autofocus>
+            <label for="floatingInput">Edit your description</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="editItem()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script>
+        todoLIst =[]
+        var newNumber = 0
+
+        if(localStorage.users){
+            todoLIst = JSON.parse(localStorage.getItem("users"))
+            console.log(todoLIst)
+        }
+        function displayITem(){
+            let todoContainer = JSON.parse(localStorage.getItem("users"))
+            // todoLIst.push(userTodo)
+        // console.log(todoLIst)
+    
+    show.innerHTML = '';  
+    
+    todoLIst.map(
+        (todoContainer,number)=>{
+          var time = new Date().toLocaleTimeString()
+          var date = new Date().toLocaleDateString()
+  
+        show.innerHTML += `
+        <div class="card bg-secondary text-white " ">
+       <div class="card-body">
+       <h5 class="card-title"> ${number + 1}</h5>
+       <p class="card-text border-bottom border-dark">${todoContainer.inputTag} </p>
+       <p class="card-text border-bottom border-dark">${todoContainer.inputTagTwo}<br></p>
+       <p class="card-text border-bottom border-dark "> ${date} ${time}</p>
+       <a href="#" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square" onclick="edit(${number})"></i></a>
+       <a href="#" class="btn btn-danger"  onclick="delTodo(${number})"><i class="fa-solid fa-trash"></i></a>
+       </div>
+      </div>
+        `
+        }
+    )
+   }
+
+   displayITem()
+   function delTodo(i){
+    var confirmation = confirm("Are you sure you what to delete this item? if so click OK")
+    if (confirmation == true){
+      todoLIst.splice(i,1)
+      displayITem()
+    }
+   }
+
+   function edit(i) {
+      newNumber = i
+   }
+   function editItem() {
+    if ((newTodo.value && newTodoTwo.value) == "") {
+        alert("No way")
+    } else {
+       var modalAll = {
+        inputTag: document.getElementById("newTodo").value,
+        inputTagTwo: document.getElementById("newTodoTwo").value
+       }
+        todoLIst.splice(newNumber, 1 , modalAll)
+       displayITem()
+    }
+}
+
+
+
+    </script>
+
+    <script src="bootstrap.js"></script>
+</body>
+</html>
